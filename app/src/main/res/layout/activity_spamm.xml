@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/layout_main"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".MainActivity">
+	
+	<TextView
+		android:id="@+id/textView"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:text="What should be spammed?"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintHorizontal_bias="0.497"
+		app:layout_constraintLeft_toLeftOf="parent"
+		app:layout_constraintRight_toRightOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		app:layout_constraintVertical_bias="0.262" />
+	
+	<EditText
+		android:id="@+id/editTextSpamMsg"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="99dp"
+		android:layout_marginTop="17dp"
+		android:layout_marginEnd="99dp"
+		android:ems="10"
+		android:hint="Enter message here"
+		android:inputType="text"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/textView" />
+	
+	<TextView
+		android:id="@+id/textView2"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="128dp"
+		android:layout_marginTop="36dp"
+		android:text="Spam wait interval (ms)"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/editTextSpamMsg" />
+	
+	<EditText
+		android:id="@+id/editTextWaitTime"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="96dp"
+		android:layout_marginTop="20dp"
+		android:ems="10"
+		android:inputType="number"
+		android:text="1000"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/textView2" />
+	
+	<TextView
+		android:id="@+id/SMSMsgsSent"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="136dp"
+		android:layout_marginTop="16dp"
+		android:text="SMS Messages Sent: "
+		android:visibility="gone"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/editTextWaitTime" />
+	
+	<Button
+		android:id="@+id/startSpam"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="128dp"
+		android:layout_marginTop="212dp"
+		android:layout_marginEnd="128dp"
+		android:text="Start Spamming"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/editTextWaitTime" />
+	
+	<Button
+		android:id="@+id/stopSpam"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="132dp"
+		android:layout_marginTop="20dp"
+		android:layout_marginEnd="132dp"
+		android:layout_marginBottom="19dp"
+		android:text="Stop Spamming"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/startSpam" />
+	
+	<TextView
+		android:id="@+id/SMSMsgsDelivered"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="120dp"
+		android:layout_marginTop="20dp"
+		android:text="SMS Messages Delivered: "
+		android:visibility="gone"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/SMSMsgsSent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

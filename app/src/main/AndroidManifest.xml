@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:tools="http://schemas.android.com/tools"
+	package="gq.catz.spamnick">
+	
+	<uses-permission android:name="android.permission.SEND_SMS"/>
+	<uses-permission android:name="android.permission.READ_SMS" />
+	<uses-permission android:name="android.permission.WRITE_SMS"/>
+	<uses-permission android:name="android.permission.RECEIVE_SMS"/>
+	<uses-permission android:name="android.permission.RECEIVE_MMS"/>
+	<uses-permission android:name="android.permission.VIBRATE"/>
+	<uses-permission android:name="android.provider.Telephony.SMS_RECEIVED" />
+	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+	<uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+	<uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+	<uses-permission android:name="android.permission.WRITE_SETTINGS"
+		tools:ignore="ProtectedPermissions" />
+	
+	<application
+		android:allowBackup="true"
+		android:icon="@mipmap/ic_launcher"
+		android:label="@string/app_name"
+		android:roundIcon="@android:drawable/btn_star_big_on"
+		android:supportsRtl="true"
+		android:theme="@style/Theme.SpamNick">
+		
+		<receiver
+			android:name=".SmsReceiver"
+			android:permission="android.permission.BROADCAST_SMS"
+			android:exported="true"
+			android:enabled="true">
+			<intent-filter>
+				<action android:name="android.provider.Telephony.SMS_DELIVER" />
+			</intent-filter>
+		</receiver>
+		
+<!--		<receiver-->
+<!--			android:name="com.klinker.android.send_message.SentReceiver"-->
+<!--			android:permission="android.permission.READ_SMS">-->
+<!--			&lt;!&ndash;android:taskAffinity="gq.catz.spamnick.SMS_SENT"&ndash;&gt;-->
+<!--			<intent-filter>-->
+<!--				<action android:name="gq.catz.spamnick.SMS_SENT"/>-->
+<!--			</intent-filter>-->
+<!--		</receiver>-->
+<!--		-->
+<!--		<receiver-->
+<!--			android:name="com.klinker.android.send_message.DeliveredReceiver"-->
+<!--			android:taskAffinity="gq.catz.spamnick.SMS_DELIVERED"-->
+<!--			android:permission="android.permission.READ_SMS"/>-->
+		
+		<!-- Your custom receiver which is child of com.klinker.android.send_message.MmsSentReceiver -->
+<!--		<receiver-->
+<!--			android:name="[insert your custom receiver here. eg. com.example.sms_mms.receivers.MyMmsSentReceiver]"-->
+<!--			android:taskAffinity="com.klinker.android.messaging.MMS_SENT"/>-->
+		
+		<receiver
+			android:name=".MmsReceiver"
+			android:permission="android.permission.BROADCAST_WAP_PUSH">
+			<intent-filter>
+				<action android:name="android.provider.Telephony.WAP_PUSH_DELIVER" />
+				<data android:mimeType="application/vnd.wap.mms-message" />
+			</intent-filter>
+		</receiver>
+		
+		<activity android:name=".SpammActivity">
+			<intent-filter>
+				<action android:name="android.intent.action.SEND" />
+				<action android:name="android.intent.action.SENDTO" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<category android:name="android.intent.category.BROWSABLE" />
+				<data android:scheme="sms" />
+				<data android:scheme="smsto" />
+				<data android:scheme="mms" />
+				<data android:scheme="mmsto" />
+			</intent-filter>
+		</activity>
+		
+		<activity android:name=".MainActivity">
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN"/>
+				<category android:name="android.intent.category.LAUNCHER"/>
+			</intent-filter>
+		</activity>
+		
+		<!-- 'Quick-Response' service -->
+		<service
+			android:name=".HeadlessSmsSendService"
+			android:exported="true"
+			android:permission="android.permission.SEND_RESPOND_VIA_MESSAGE">
+			<intent-filter>
+				<action android:name="android.intent.action.RESPOND_VIA_MESSAGE" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<data android:scheme="sms" />
+				<data android:scheme="smsto" />
+				<data android:scheme="mms" />
+				<data android:scheme="mmsto" />
+			</intent-filter>
+		</service>
+	</application>
+
+</manifest>
